@@ -11,7 +11,7 @@ import Foundation
 struct PlaylistItemsModel: Codable {
     let kind, etag: String
     let items: [Item]
-    let pageInfo: PageInfo
+    let pageInfo: PageInfo?
 }
 
 // MARK: - Item
@@ -24,7 +24,7 @@ struct Item: Codable {
 // MARK: - ContentDetails
 struct ContentDetails: Codable {
     let videoID: String
-    let videoPublishedAt: Date
+    let videoPublishedAt: String
 
     enum CodingKeys: String, CodingKey {
         case videoID = "videoId"
@@ -34,7 +34,7 @@ struct ContentDetails: Codable {
 
 // MARK: - Snippet
 struct Snippet: Codable {
-    let publishedAt: Date
+    let publishedAt: String
     let channelID, title, description: String
     let thumbnails: Thumbnails
     let channelTitle, playlistID: String

@@ -11,7 +11,7 @@ struct PlayListModel: Decodable {
     let kind: String
     let etag: String
     let nextPageToken: String
-    let pageInfo: PageInfoModel
+    let pageInfo: PageInfoModel?
     let items: [ItemsModel]
     
     struct PageInfoModel: Decodable {

@@ -9,12 +9,15 @@ import Foundation
 
 protocol HomeProviderProtocol {
     func getVideos(searchString: String, channelId: String) async throws -> VideoModel
+    func getChannel(channelId: String) async throws -> ChannelModel
+    func getPlayLists(channelId: String) async throws -> PlayListModel
+    func getPlayListsItems(playlistId: String) async throws -> PlaylistItemsModel
 }
 
 class HomeProvider: HomeProviderProtocol {
     
     func getVideos(searchString: String, channelId: String) async throws -> VideoModel {
-        var queryParams: [String:String] = ["part":"snippet"]
+        var queryParams: [String:String] = ["part":"snippet", "type": "video"]
         
         if !channelId.isEmpty {
             queryParams["channelId"] = channelId

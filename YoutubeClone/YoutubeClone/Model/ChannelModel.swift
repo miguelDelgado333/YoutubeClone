@@ -8,34 +8,34 @@
 import Foundation
 
 // MARK: - ChannelModel
-struct ChannelModel: Codable {
+struct ChannelModel: Decodable {
     let kind, etag: String
-    let pageInfo: PageInfo
-    let items: [Item]
+    let pageInfo: PageInfoChannel?
+    let items: [ItemChannel]
 }
 
 // MARK: - Item
-struct Item: Codable {
+struct ItemChannel: Decodable {
     let kind, etag, id: String
-    let snippet: Snippet
+    let snippet: SnippetItem
     let statistics: Statistics
     let brandingSettings: BrandingSettings
 }
 
 // MARK: - BrandingSettings
-struct BrandingSettings: Codable {
+struct BrandingSettings: Decodable {
     let channel: Channel
     let image: Image
 }
 
 // MARK: - Channel
-struct Channel: Codable {
+struct Channel: Decodable {
     let title, description, keywords, defaultLanguage: String
     let country: String
 }
 
 // MARK: - Image
-struct Image: Codable {
+struct Image: Decodable {
     let bannerExternalURL: String
 
     enum CodingKeys: String, CodingKey {
@@ -44,9 +44,9 @@ struct Image: Codable {
 }
 
 // MARK: - Snippet
-struct Snippet: Codable {
+struct SnippetItem: Decodable {
     let title, description, customURL, publishedAt: String
-    let thumbnails: Thumbnails
+    let thumbnails: ThumbnailsSnippet
     let defaultLanguage: String
     let localized: Localized
     let country: String
@@ -59,13 +59,13 @@ struct Snippet: Codable {
 }
 
 // MARK: - Localized
-struct Localized: Codable {
+struct Localized: Decodable {
     let title, description: String
 }
 
 // MARK: - Thumbnails
-struct Thumbnails: Codable {
-    let thumbnailsDefault, medium, high: Default
+struct ThumbnailsSnippet: Decodable {
+    let thumbnailsDefault, medium, high: DefaultThumbnails
 
     enum CodingKeys: String, CodingKey {
         case thumbnailsDefault = "default"
@@ -74,19 +74,19 @@ struct Thumbnails: Codable {
 }
 
 // MARK: - Default
-struct Default: Codable {
+struct DefaultThumbnails: Decodable {
     let url: String
     let width, height: Int
 }
 
 // MARK: - Statistics
-struct Statistics: Codable {
+struct Statistics: Decodable {
     let viewCount, subscriberCount: String
     let hiddenSubscriberCount: Bool
     let videoCount: String
 }
 
-// MARK: - PageInfo
-struct PageInfo: Codable {
+// MARK: - PageInfoChannel
+struct PageInfoChannel: Decodable {
     let totalResults, resultsPerPage: Int
 }
